@@ -24,7 +24,7 @@ public class Move : MonoBehaviour
 
         _animator.SetFloat("Speed" , Mathf.Abs( Input.GetAxis("Horizontal")));
 
-        if(Input.GetButtonDown("Jump") && Mathf.Approximately(rg.velocity.y , 0))
+        if(Input.GetButtonDown("Jump") && !_animator.GetBool("isJumping"))
         {
             rg.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             _animator.SetBool("isJumping", true);
@@ -43,6 +43,22 @@ public class Move : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") == 1)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision collision)
+    {
+        if(collision.gameObject.name == "Ground")
+        {
+            _animator.SetBool("isJumping", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Ground")
+        {
+            _animator.SetBool("isJumping", true);
         }
     }
 
