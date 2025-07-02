@@ -15,7 +15,7 @@ This project is a simple yet engaging 2D platformer developed using **Unity** an
 - [Features](#features)
 - [Technologies](#technologies)
 - [Contributing](#contributing)
-
+- [Screenshots](#screenshots)
 
 ---
 
